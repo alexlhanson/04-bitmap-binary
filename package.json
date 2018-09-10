@@ -1,0 +1,24 @@
+{
+  "name": "04-bitmap-binary",
+  "version": "1.0.0",
+  "description": "Bitmap transformer module",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest **/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexlhanson/04-bitmap-binary.git"
+  },
+  "author": "Alex Hanson <alexlhanson@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexlhanson/04-bitmap-binary/issues"
+  },
+  "homepage": "https://github.com/alexlhanson/04-bitmap-binary#readme",
+  "dependencies": {
+    "ajv": "^6.5.3",
+    "eslint": "^5.5.0",
+    "jest": "^23.6.0"
+  }
+}
