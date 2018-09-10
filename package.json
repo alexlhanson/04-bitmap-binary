@@ -4,7 +4,8 @@
   "description": "Bitmap transformer module",
   "main": "index.js",
   "scripts": {
-    "test": "jest **/*.test.js"
+    "test": "jest **/*.test.js",
+    "start": "node ./lab-alex/index.js ./lab-alex/__test__/assets/duck.bmp ./lab-alex/__test__/assets/x-duck.bmp invert"
   },
   "repository": {
     "type": "git",
