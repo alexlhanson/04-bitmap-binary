@@ -33,17 +33,15 @@ bmt.open(inputFile, (err, bitmap) => {
 });
 
 ee.on('fileLoaded', (bitmap) => {
-  console.log(bitmap);
   bmt.invert(bitmap, (err, bitmap) =>{
     if (err) throw err;
 
     ee.emit('transformed', (bitmap));
-  })
+  });
 });
 
 ee.on('transformed', (bitmap) => {
   bmt.save(bitmap, outputFile, (err, data) =>{
-    if (err) throw error;
-  }
-
-}
+    if (err) throw err;
+  });
+});

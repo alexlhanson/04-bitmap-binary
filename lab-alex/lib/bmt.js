@@ -32,7 +32,11 @@ class BMT{
     //Write transformed butmap to disk
     //NOTE: transformed colors might still be encoded, they need to be raw.
     //NOTE: bitmap is NOT a Buffer, but fs.writeFile takes a buffer
-    // fs.writeFile(file, ())
+    console.log(bitmap);
+    
+    fs.writeFile(outputFile, this.buf, (err) =>{
+      if (err) callback (err);
+    });
 
     callback(null);
   }
@@ -54,6 +58,7 @@ let _parseBitMapBuffer = function(self){
     planes: self.infoHeaderBuf.readUInt16LE(12),
     bitPerPx: self.infoHeaderBuf.readUInt16LE(14),
   };
+
   
 };
 
