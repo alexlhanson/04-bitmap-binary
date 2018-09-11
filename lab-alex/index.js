@@ -21,10 +21,29 @@ console.log(message);
 *         Operations                                                            *
 ********************************************************************************/
 
+const Event = require('events').EventEmitter;
+const ee = new Event();
 const BMT = require('./lib/bmt.js');
 let bmt = new BMT();
 
-bmt.open(inputFile, (err, data) => {
+bmt.open(inputFile, (err, bitmap) => {
   if (err) throw err;
-  console.log(data);
+
+  ee.emit('fileLoaded', bitmap);
 });
+
+ee.on('fileLoaded', (bitmap) => {
+  console.log(bitmap);
+  bmt.invert(bitmap, (err, bitmap) =>{
+    if (err) throw err;
+
+    ee.emit('transformed', (bitmap));
+  })
+});
+
+ee.on('transformed', (bitmap) => {
+  bmt.save(bitmap, outputFile, (err, data) =>{
+    if (err) throw error;
+  }
+
+}
