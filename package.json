@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest **/*.test.js",
-    "start": "node ./lab-alex/index.js ./lab-alex/__test__/assets/duck.bmp ./lab-alex/__test__/assets/x-duck.bmp invert"
+    "start": "node ./lab-alex/index.js ./lab-alex/__test__/assets/duck.bmp ./lab-alex/__test__/assets/x-duck.bmp sunny"
   },
   "repository": {
     "type": "git",

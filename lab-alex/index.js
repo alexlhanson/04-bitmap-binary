@@ -33,7 +33,7 @@ bmt.open(inputFile, (err, bitmap) => {
 });
 
 ee.on('fileLoaded', (bitmap) => {
-  bmt.invert(bitmap, (err, bitmap) =>{
+  bmt[transform](bitmap, (err, bitmap) =>{
     if (err) throw err;
 
     ee.emit('transformed', (bitmap));

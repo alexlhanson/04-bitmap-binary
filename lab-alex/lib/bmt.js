@@ -26,19 +26,52 @@ class BMT{
 
   invert(bitmap, callback){
     console.log('inverting');
-    //transform colors
-    bitmap.invert = new Buffer.from(bitmap.body.map(decVal => 255 - parseInt(decVal)));
+    bitmap.body = new Buffer.from(bitmap.body.map(decVal => 255 - parseInt(decVal)));
     callback(null, bitmap);
-    // console.log(bitmap.invert);
+  }
+
+  lighten(bitmap, callback){
+    console.log('lighten');
+    bitmap.body = new Buffer.from(bitmap.body.map(decVal => {
+      if (parseInt(decVal) < 220) {
+        return parseInt(decVal) + 35;
+      } else {
+        return 255;
+      }
+    }));
+    console.log(bitmap.body);
+    callback(null, bitmap);
+  }
+
+  darken(bitmap, callback){
+    console.log('darkening');
+    bitmap.body = new Buffer.from(bitmap.body.map(decVal => {
+      if (parseInt(decVal) > 35) {
+        return parseInt(decVal) - 35;
+      } else {
+        return 0;
+      }
+    }));
+    console.log(bitmap.body);
+    callback(null, bitmap);
+  }
+  
+  sunny(bitmap, callback){
+    console.log('redscaling');
+    bitmap.body = new Buffer.from(bitmap.body.map((decVal, index) => {
+      if (index % 3 !== 0) {
+        return parseInt(decVal);
+      } else {
+        return 0;
+      }
+    }));
+
+    console.log(bitmap.body);
+    callback(null, bitmap);
   }
 
   save(bitmap, outputFile, callback){
-    //Write transformed butmap to disk
-    //NOTE: transformed colors might still be encoded, they need to be raw.
-    //NOTE: bitmap is NOT a Buffer, but fs.writeFile takes a buffer
-    // console.log(bitmap);
-    console.log(this.invert);
-    const transformed = Buffer.concat([bitmap.fileHeaderBuf, bitmap.infoHeaderBuf, bitmap.invert]);
+    const transformed = Buffer.concat([bitmap.fileHeaderBuf, bitmap.infoHeaderBuf, bitmap.body]);
 
     fs.writeFile(outputFile, transformed, (err) =>{
       if (err) callback (err);
