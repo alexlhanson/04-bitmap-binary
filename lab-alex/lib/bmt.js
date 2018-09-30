@@ -25,13 +25,11 @@ class BMT{
   }
 
   invert(bitmap, callback){
-    console.log('inverting');
     bitmap.body = new Buffer.from(bitmap.body.map(decVal => 255 - parseInt(decVal)));
     callback(null, bitmap);
   }
 
   lighten(bitmap, callback){
-    console.log('lighten');
     bitmap.body = new Buffer.from(bitmap.body.map(decVal => {
       if (parseInt(decVal) < 220) {
         return parseInt(decVal) + 35;
@@ -39,12 +37,10 @@ class BMT{
         return 255;
       }
     }));
-    console.log(bitmap.body);
     callback(null, bitmap);
   }
 
   darken(bitmap, callback){
-    console.log('darkening');
     bitmap.body = new Buffer.from(bitmap.body.map(decVal => {
       if (parseInt(decVal) > 35) {
         return parseInt(decVal) - 35;
@@ -52,12 +48,10 @@ class BMT{
         return 0;
       }
     }));
-    console.log(bitmap.body);
     callback(null, bitmap);
   }
   
   sunny(bitmap, callback){
-    console.log('redscaling');
     bitmap.body = new Buffer.from(bitmap.body.map((decVal, index) => {
       if (index % 3 !== 0) {
         return parseInt(decVal);
@@ -66,7 +60,6 @@ class BMT{
       }
     }));
 
-    console.log(bitmap.body);
     callback(null, bitmap);
   }
 
